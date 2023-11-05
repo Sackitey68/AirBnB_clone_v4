@@ -1,80 +1,80 @@
-!DOCTYPE html>
-  2 <html lang="en">
-  3   <head>
-  4     <meta charset="UTF-8">
-  5     <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{ cache_id }}">
-  6     <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{ cache_id }}">
-  7     <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?{{ cache_id }}">
-  8     <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css?{{ cache_id }}">
-  9     <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}">
- 10     <link rel="icon" href="../static/images/icon.png" />
- 11     <title>HBnB</title>
- 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css">
+    <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css">
+    <link rel="icon" href="../static/images/icon.png" />
+    <title>HBnB</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="static/scripts/1-hbnb.js"></script>
- 12   </head>
- 13   <body>
- 14     <header>
- 15       <div class="logo"></div>
- 16     </header>
- 17     <div class="container">
- 18       <section class="filters">
- 19         <div class="locations">
- 20           <h3>States</h3>
- 21           <h4>&nbsp;</h4>
- 22           <div class="popover">
- 23             <ul>
- 24               {% for state in states %}
- 25               <li>
- 26                 <h2>{{ state[0].name }}:</h2>
- 27                 <ul>
- 28                   {% for city in state[1] %}
- 29                   <li>{{ city.name }}</li>
- 30                   {% endfor %}
- 31                 </ul>
- 32               </li>
- 33               {% endfor %}
- 34             </ul>
- 35           </div>
- 36         </div>
- 37         <div class="amenities">
- 38           <h3>Amenities</h3>
- 39           <h4>&nbsp;</h4>
- 40           <div class="popover">
- 41             <ul>
- 42               {% for amenity in amenities %}
- 43               <li><input type="checkbox" data-id="{{amenity_id}}" data-name="{{amenity_name}}" > {{ amenity.name }}</li>
- 44               {% endfor %}
- 45             </ul>
- 46           </div>
- 47         </div>
- 48         <button type="button">Search</button>
- 49       </section>
- 50       <div class="placesh1"><h1>Places</h1></div>
- 51       <section class="places">
- 52         <!-- <h1>Places</h1> -->
- 53         {% for place in places %}
- 54         <article>
- 55           <div class="title_box">
- 56             <h2>{{ place.name }}</h2>
- 57             <div class="price_by_night">${{ place.price_by_night }}</div>
- 58           </div>
- 59           <div class="information">
- 60             <div class="max_guest">{{ place.max_guest }} Guest{% if place.max_guest != 1 %}s{% endif %}</div>
- 61             <div class="number_rooms">{{ place.number_rooms }} Bedroom{% if place.number_rooms != 1 %}s{% endif %}</div>
- 62             <div class="number_bathrooms">{{ place.number_bathrooms }} Bathroom{% if place.number_bathrooms != 1 %}s{% endif %}</div>
- 63           </div>
- 64           <div class="user">
- 65             <b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}
- 66           </div>
- 67           <div class="description">
- 68             {{ place.description | safe }}
- 69           </div>
- 70         </article>
- 71         {% endfor %}
- 72       </section>
- 73     </div>
- 74     <footer>
- 75       <p>Holberton School</p>
- 76     </footer>
- 77   </body>
- 78 </html>
+  </head>
+  <body>
+    <header>
+      <div class="logo"></div>
+    </header>
+    <div class="container">
+      <section class="filters">
+	<div class="locations">
+	  <h3>States</h3>
+	  <h4>&nbsp;</h4>
+	  <div class="popover">
+	    <ul>
+	      {% for state in states %}
+	      <li>
+		<h2>{{ state[0].name }}:</h2>
+		<ul>
+		  {% for city in state[1] %}
+		  <li>{{ city.name }}</li>
+		  {% endfor %}
+		</ul>
+	      </li>
+	      {% endfor %}
+	    </ul>
+	  </div>
+	</div>
+	<div class="amenities">
+	  <h3>Amenities</h3>
+	  <h4>&nbsp;</h4>
+	  <div class="popover">
+	    <ul>
+	      {% for amenity in amenities %}
+	      <li><input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}" > {{ amenity.name }}</li>
+	      {% endfor %}
+	    </ul>
+	  </div>
+	</div>
+	<button type="button">Search</button>
+      </section>
+      <div class="placesh1"><h1>Places</h1></div>
+      <section class="places">
+	<!-- <h1>Places</h1> -->
+	{% for place in places %}
+	<article>
+	  <div class="title_box">
+	    <h2>{{ place.name }}</h2>
+	    <div class="price_by_night">${{ place.price_by_night }}</div>
+	  </div>
+	  <div class="information">
+	    <div class="max_guest">{{ place.max_guest }} Guest{% if place.max_guest != 1 %}s{% endif %}</div>
+            <div class="number_rooms">{{ place.number_rooms }} Bedroom{% if place.number_rooms != 1 %}s{% endif %}</div>
+            <div class="number_bathrooms">{{ place.number_bathrooms }} Bathroom{% if place.number_bathrooms != 1 %}s{% endif %}</div>
+	  </div>
+	  <div class="user">
+            <b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}
+          </div>
+          <div class="description">
+	    {{ place.description | safe }}
+          </div>
+	</article>
+	{% endfor %}
+      </section>
+    </div>
+    <footer>
+      <p>Holberton School</p>
+    </footer>
+  </body>
+</html>
